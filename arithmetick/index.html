@@ -1,0 +1,432 @@
+<html>
+    <head>
+        <title>Arithmetick</title> 
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<meta name="description"					content="">
+		<meta name="author"							content="Spark Revolutions Ltd.">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, height=device-height" />
+		<meta name="apple-mobile-web-app-capable" 	content="yes" />
+		<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		
+		<link rel="apple-touch-icon-precomposed" href="icons/App-Store.png"/>		
+        
+		<link href="icons/Default-568h@2x.png" rel="apple-touch-startup-image" media="(device-height: 568px)">
+		<link href="icons/Default@2x.png" rel="apple-touch-startup-image" sizes="640x920" media="(device-height: 480px)">
+
+        <link rel="stylesheet" href="c/main.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+
+            
+        <script src="js/jqy.js"></script>
+	    <script src="js/jquery.specialevent.hammer.js"></script>
+        <script src="js/hammer.js" type="text/javascript" charset="utf-8"></script>
+      	<script src="js/e.js" type="text/javascript" charset="utf-8"></script>
+       	<script src="js/s.js" type="text/javascript" charset="utf-8"></script>
+       
+        <script type="text/javascript" src="cordova-2.1.0.js"></script>
+            
+                        
+    </head>
+    
+    
+    
+    
+    <body id="theBody">
+
+	<div class="overlay" id="overlayId">
+                    
+            <div class="dragme" id="menus">
+                
+                <!--Save Section-->
+                <div class="leftOpt">
+                </div><!--.leftOpt-->
+
+                <h5 class="saveIcon">SAVE</h5>
+                
+                <div class="leftOptSuccess"></div>
+                <div class="rightOptSuccess"></div>
+                
+                
+                <div class="rightOpt">
+                    
+                    <div class="optionMode">
+                        <h5 class="nightText f0important optionText center-align">DARK MODE</h5>
+                        <h5 class="dayText f0important optionText center-align">LIGHT MODE</h5>
+                    </div>
+                    
+                    <div class="optionUndo">
+						<h5 class="optionText f0important center-align">STEP BACK</h5>
+                    </div>
+                    
+                    <div class="optionRedo">
+						<h5 class="optionText f0important center-align">CLEAR SAVE</h5>
+                    </div>
+                    
+                    <div id="optionResetOverlay">
+						<h5 class="optionText center-align">RESET</h5>
+                    </div><!--#optionReset-->
+                    
+                    <div class="optionCommands">
+						<h5 id="resetTutorial" class="optionText hdFPS center-align">DRAG RESET LEFT</h5>
+                    </div>
+
+                    <div class="optionImage">
+                        <img class="nightText" src="i/dark-mode.svg" width="20" height="20">
+                            <div class="clear"></div>
+                        <img class="dayText" src="i/light-mode.svg" width="20" height="20">
+                            <div class="clear"></div>
+                        <img src="i/undo.svg" width="20" height="20">
+                            <div class="clear"></div>
+                        <img src="i/clear-save.svg" width="20" height="20">
+                            <div class="clear"></div>
+                        <img src="i/reset-zero.svg" width="20" height="20">
+                            <div class="clear"></div>
+                            
+                            <h5 class="hdFPS">NTSC</h5>
+                    </div>
+                </div>
+
+
+                <div class="content">
+                    
+                    <div class="loadBanner center-align">LOAD</div>
+                    
+                    
+                    <div class="selectors">
+                        
+                        <div id="displayOverlay">
+                            <div id="dragOverlay">
+                                <script type="text/x-handlebars">
+                                    
+                                    <div class="valueHours">
+                                    <h3>{{{App.displayController.displayValue.h}}}</h3>
+                                    </div><!--.valueHours-->
+                                    
+                                    <div class="seperator">
+                                    :
+                                    </div>
+                                    
+                                    <div class="valueMinutes">
+                                    <h3>0</h3>
+                                    </div><!--.valueMintues-->
+                                    
+                                    <div class="seperator">
+                                    :
+                                    </div>
+                                    
+                                    <div class="valueSeconds">
+                                    <h3>0</h3>
+                                    </div><!--.valueSeconds-->
+                                    
+                                    <div class="seperator">
+                                    :
+                                    </div>
+                                    
+                                    <div class="valueFrames">
+                                    <h3>
+                                    0
+                                    </h3>
+                                    </div><!--.valueFrames-->
+                                    
+                                    </script>
+                            </div>
+                            
+                            
+                            <div class="currentValue center-align">
+                                <script type="text/x-handlebars">
+                                    
+                                    
+                                    <div class="values">
+                                    <div class="valueHours">
+                                    <h3 class="oldValue"></h3>
+                                    </div><!--.valueHours-->
+                                    
+                                    <div class="valueMinutes">
+                                    <h3 id="plusOverlay">+</h3>
+                                    <h3 id="minusOverlay">-</h3>
+                                    </div><!--.valueMinutes-->
+                                    
+                                    <div class="valueSeconds">
+                                    <h3 class="displayH valueDragging">{{{App.displayController.hoursV}}}</h3>
+                                    <h3 class="displayM valueDragging">{{{App.displayController.minutesV}}}</h3>
+                                    <h3 class="displayS valueDragging">{{{App.displayController.secondsV}}}</h3>
+                                    <h3 class="displayF valueDragging">{{{App.displayController.framesV}}}</h3>
+                                    </div><!--.valueSeconds-->
+                                    
+                                    <div class="valueFrames">
+                                    <h5 class="displayH">HOURS</h5>
+                                    <h5 class="displayM">MINUTES</h5>
+                                    <h5 class="displayS">SECONDS</h5>
+                                    <h5 class="displayF">FRAMES</h5>
+                                    </div>
+                                    </div>
+                                    
+                                    </script>
+                            </div>
+                            
+                        </div>
+
+                        
+                        
+                        
+                        <div id="hoursOverlay" class="hoursOverlay">
+                            <div class="minusIcon center-align">		<h5 class="plussMinus">-</h5>					</div><!--.minusIcon-->
+                            <div class="operatorInform center-align">	<h5 class="hoursWords">HOURS</h5>		</div><!--.opertorInform-->
+                            <div class="plusIcon center-align">			<h5 class="plussMinus">+</h5>					</div><!--.plusIcon-->
+                        </div><!--#hours-->
+                        
+                        
+                        
+                        
+                        <div class="minutes">
+                            <div class="minusIcon center-align"><h5 class="plussMinus"></h5></div><!--.minusIcon-->
+                            <div class="operatorInform center-align"><h5 id="tutorialText" class="minutesWords">DRAG YOUR FINGER OVER THE WORD HOURS ABOVE...</h5></div><!--.opertorInform-->
+                            <div class="plusIcon center-align"><h5 class="plussMinus"></h5></div><!--.plusIcon-->
+                        </div>
+                        
+                        
+                        
+                        
+                        <div class="seconds">
+                            <div class="minusIcon center-align"><h5 class="plussMinus"></h5></div><!--.minusIcon-->
+                            <div class="operatorInform center-align"><h5 class="secondsWords"></h5></div><!--.opertorInform-->
+                            <div class="plusIcon center-align"><h5 class="plussMinus"></h5></div><!--.plusIcon-->
+                        </div>
+                        
+                        
+                        
+                        <div class="frames">
+                            <div class="minusIcon center-align"><h5 class="plussMinus"></h5></div><!--.minusIcon-->
+                            <div class="operatorInform center-align"><h5 class="framesWords"></h5></div><!--.opertorInform-->
+                            <div class="plusIcon center-align"><h5 class="plussMinus"></h5></div><!--.plusIcon-->
+                        </div>
+
+				        
+                        
+                    </div>
+              </div> 
+        </div>
+
+		
+	</div>
+        
+
+        
+        
+        
+        
+        <div class="iphoneClipping">
+            
+            
+            <div class="dragme" id="menus">
+                
+                <!--Save Section-->
+                <div class="leftOpt">
+                </div><!--.leftOpt-->
+                
+                <h5 id="appSAVE" class="saveIcon">SAVE</h5>
+
+                
+                <div class="leftOptSuccess"></div>
+                <div class="rightOptSuccess"></div>
+
+                
+                
+                <!--Options Section-->
+                <div class="rightOpt">
+
+                    <div id="optionMode">
+                        <h5 class="nightText optionText center-align">DARK MODE</h5>
+                        <h5 class="dayText optionText center-align">LIGHT MODE</h5>
+                    </div>
+                    
+                    <div id="optionUndo">
+						<h5 class="optionText center-align">STEP BACK</h5>
+                    </div>
+                    
+                    <div id="optionRedo">
+						<h5 class="optionText center-align">CLEAR SAVE</h5>
+                    </div>
+                    
+                    <div id="optionReset">
+						<h5 class="optionText center-align">RESET</h5>
+                    </div><!--#optionReset-->
+                    
+                    <div id="optionCommands">
+						<h5 class="optionText hdFPS center-align">HD &nbsp; 24FPS</h5>
+                        <h5 class="optionText ntscFPS center-align">NTSC &nbsp; 29.97FPS</h5>
+						<h5 class="optionText palFPS center-align">PAL &nbsp; 23.976FPS</h5>
+						<h5 class="optionText flixFPS center-align">CINEMA &nbsp; 30FPS</h5>
+						<h5 class="optionText disFPS center-align">DISABLED</h5>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="optionImage">
+                        <img class="nightText" src="i/dark-mode.svg" width="20" height="20">
+                          <div class="clear"></div>
+                        <img class="dayText" src="i/light-mode.svg" width="20" height="20">
+                            <div class="clear"></div>
+                        <img src="i/undo.svg" width="20" height="20">
+                            <div class="clear"></div>
+                        <img src="i/clear-save.svg" width="20" height="20">
+                            <div class="clear"></div>
+                        <img src="i/reset-zero.svg" width="20" height="20">
+                            <div class="clear"></div>
+                            
+                            <h5 class="hdFPS">NTSC</h5>
+                            <h5 class="ntscFPS">PAL</h5>
+                            <h5 class="palFPS">CINEMA</h5>
+                            <h5 class="flixFPS">DISABLE</h5>
+                            <h5 class="disFPS">HD</h5>
+                    </div>
+                    
+                    
+                    
+                </div>
+                
+
+                
+                
+                <div class="content">
+                    
+                    <div class="loadBanner center-align">LOAD</div>
+                    
+                    <div class="selectors">
+                        
+                        <div id="display">
+                            <div id="drag">
+                                <script type="text/x-handlebars">
+                                    
+                                    <div class="valueHours">
+                                    <h3>{{{App.displayController.displayValue.h}}}</h3>
+                                    </div><!--.valueHours-->
+                                    
+                                    <div class="seperator">
+                                    :
+                                    </div>
+                                    
+                                    <div class="valueMinutes">
+                                    <h3>{{{App.displayController.displayValue.m}}}</h3>
+                                    </div><!--.valueMintues-->
+                                    
+                                    <div class="seperator">
+                                    :
+                                    </div>
+                                    
+                                    <div class="valueSeconds">
+                                    <h3>{{{App.displayController.displayValue.s}}}</h3>
+                                    </div><!--.valueSeconds-->
+                                    
+                                    {{#if App.displayController.noFPS}}
+                                    <div class="seperator">
+                                    :
+                                    </div>
+                                    
+                                    <div class="valueFrames">
+                                    <h3>
+                                    {{{App.displayController.displayValue.f}}}
+                                    </h3>
+                                    </div><!--.valueFrames-->
+                                    {{/if}}
+                                    
+                                    </script>
+                            </div>
+                            
+                            
+                            <div class="currentValue center-align">
+                                <script type="text/x-handlebars">
+                                    
+                                    
+                                    <div class="values">
+                                    <div class="valueHours">
+                                    <h3 class="oldValue"></h3>
+                                    </div><!--.valueHours-->
+                                    
+                                    <div class="valueMinutes">
+                                    <h3 id="plus">+</h3>
+                                    <h3 id="minus">-</h3>
+                                    </div><!--.valueMinutes-->
+                                    
+                                    <div class="valueSeconds">
+                                    <h3 class="displayH valueDragging">{{{App.displayController.hoursV}}}</h3>
+                                    <h3 class="displayM valueDragging">{{{App.displayController.minutesV}}}</h3>
+                                    <h3 class="displayS valueDragging">{{{App.displayController.secondsV}}}</h3>
+                                    <h3 class="displayF valueDragging">{{{App.displayController.framesV}}}</h3>
+                                    </div><!--.valueSeconds-->
+                                    
+                                    <div class="valueFrames">
+                                    <h5 class="displayH">HOURS</h5>
+                                    <h5 class="displayM">MINUTES</h5>
+                                    <h5 class="displayS">SECONDS</h5>
+                                    <h5 class="displayF">FRAMES</h5>
+                                    </div>
+                                    </div>
+                                    
+                                    </script>
+                            </div>
+                            
+                        </div>
+                        
+                        
+                        <div id="hours">
+                            <div class="minusIcon center-align">		<h5 class="plussMinus">-</h5>					</div><!--.minusIcon-->
+                            <div class="operatorInform center-align">	<h5 class="hoursWords">HOURS</h5>		</div><!--.opertorInform-->
+                            <div class="plusIcon center-align">			<h5 class="plussMinus">+</h5>					</div><!--.plusIcon-->
+                        </div><!--#hours-->
+                        
+                        
+                        
+                        
+                        <div id="minutes">
+                            <div class="minusIcon center-align"><h5 class="plussMinus">-</h5></div><!--.minusIcon-->
+                            <div class="operatorInform center-align"><h5 class="minutesWords">MINUTES</h5></div><!--.opertorInform-->
+                            <div class="plusIcon center-align"><h5 class="plussMinus">+</h5></div><!--.plusIcon-->
+                        </div>
+
+                        
+                        
+                        <div id="seconds">
+                            <div class="minusIcon center-align"><h5 class="plussMinus">-</h5></div><!--.minusIcon-->
+                            <div class="operatorInform center-align"><h5 class="secondsWords">SECONDS</h5></div><!--.opertorInform-->
+                            <div class="plusIcon center-align"><h5 class="plussMinus">+</h5></div><!--.plusIcon-->
+                        </div>
+                        
+                        
+                        
+                        <div id="frames">
+                            <div class="minusIcon center-align"><h5 class="plussMinus">-</h5></div><!--.minusIcon-->
+                            <div class="operatorInform center-align"><h5 class="framesWords">FRAMES</h5></div><!--.opertorInform-->
+                            <div class="plusIcon center-align"><h5 class="plussMinus">+</h5></div><!--.plusIcon-->
+                        </div>
+                        
+                        <div id="blankFrames">
+                            <div class="minusIcon center-align"><h5 class="plussMinus"></h5></div><!--.minusIcon-->
+                            <div class="operatorInform center-align disabled"><h5>DISABLED</h5></div><!--.opertorInform-->
+                            <div class="plusIcon center-align"><h5 class="plussMinus"></h5></div><!--.plusIcon-->
+                        </div>
+                        
+                        
+                    </div>
+                    
+                    
+                </div>
+                
+                
+            </div>
+            
+        </div><!-- .dragme -->
+
+	
+	
+        <script src="js/touchEvents.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/touchEventsOverlay.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+
+    </body>
+</html>
