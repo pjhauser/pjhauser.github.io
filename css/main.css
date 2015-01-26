@@ -392,6 +392,8 @@ footer a {
 nav {
   margin-top: -112px;
   margin-top: -7rem;
+  margin-top: -136px;
+  margin-top: -8.5rem;
   -webkit-backface-visibility: hidden;
   -webkit-transition: margin 0.5s;
   transition: margin 0.5s;
@@ -465,6 +467,10 @@ nav ul li:nth-child(3) {
   background: #0ACEFF;
 }
 
+nav ul li:nth-child(4) {
+  background: #05C6F5;
+}
+
 nav.show-offcanvas {
   margin-top: 0px;
   margin-top: 0rem;
@@ -501,7 +507,7 @@ nav[min-width~="390px"] ul li {
 nav[min-width~="390px"] ul li a {
   padding: 0 8px;
   padding: 0 0.5rem;
-  padding-top: 45%;
+  padding-top: 50%;
 }
 
 nav[min-width~="390px"] ul li a:hover {
@@ -595,8 +601,8 @@ header .logo {
   text-align: left;
   margin-left: 16px;
   margin-left: 1rem;
-  margin-top: -84.8px;
-  margin-top: -5.3rem;
+  margin-top: -68.8px;
+  margin-top: -4.3rem;
 }
 
 header[min-width~="390px"] .logo,
@@ -619,8 +625,8 @@ header[min-width~="390px"] .logo p {
 }
 
 header[min-width~="390px"] nav {
-  margin-top: -113.6px;
-  margin-top: -7.1rem;
+  margin-top: -139.2px;
+  margin-top: -8.7rem;
   float: right;
   display: inline-block;
   width: 60%;
@@ -655,8 +661,8 @@ header[min-width~="650px"] .logo p {
 
 .nav-active header,
 .nav-active .blurheader {
-  height: 168px;
-  height: 10.5rem;
+  height: 184px;
+  height: 11.5rem;
 }
 
 .content {
