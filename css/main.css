@@ -224,11 +224,12 @@ h5 {
 }
 
 .logo p {
-  font-family: "Satisfy",cursive;
   font-size: 24px;
   font-size: 1.5rem;
   font-weight: 300;
   text-align: left;
+  background: url("/img/new-logo.svg") no-repeat;
+  text-indent: -9999px;
 }
 
 .logo p a {
@@ -609,7 +610,7 @@ header[min-width~="390px"] .logo,
 header[min-width~="390px"] nav {
   float: left;
   display: inline-block;
-  width: 30%;
+  width: 40%;
   margin-top: 0;
 }
 
@@ -629,9 +630,9 @@ header[min-width~="390px"] nav {
   margin-top: -8.7rem;
   float: right;
   display: inline-block;
-  width: 60%;
-  min-width: 240px;
-  min-width: 15rem;
+  width: 50%;
+  min-width: 224px;
+  min-width: 14rem;
   height: 100%;
   position: relative;
 }
@@ -812,6 +813,17 @@ header[min-width~="650px"] .logo p {
 .page-about .content[min-width~="1000px"] .content-block img {
   margin-top: 16px;
   margin-top: 1rem;
+}
+
+.page-about .content .about-header .content-block p span {
+  font-size: 19.2px;
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.page-about .content .about-desk .content-block img,
+.page-about .content .about-desk .content-block p {
+  float: left;
 }
 
 .page-blog .title {
